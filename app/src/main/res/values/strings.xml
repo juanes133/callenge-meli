@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Challenge Meli</string>
+    <string name="buscar">Buscar</string>
+    <string name="buscar_en_mercado_libre">Buscar en Mercado Libre</string>
+    <string name="loading">Loading</string>
+    <string name="stock_disponible">Stock disponible</string>
+    <string name="informaci_n_sobre_el_vendedor">Información sobre el vendedor</string>
+    <string name="ubicaci_n">Ubicación</string>
+    <string name="hasta">Hasta</string>
+    <string name="cuotas">cuotas</string>
+    <string name="peso">$</string>
 </resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="co.com.challengemeli.view.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="co.com.challengemeli.view.SearchResultsFragment"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" >
+        <argument android:name="results" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailResultFragment"
+        android:name="co.com.challengemeli.view.DetailResultFragment"
+        android:label="fragment_detail_result"
+        tools:layout="@layout/fragment_detail_result" >
+        <argument android:name="detailResult" />
+    </fragment>
+</navigation>
