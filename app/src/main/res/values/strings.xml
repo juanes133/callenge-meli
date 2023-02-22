@@ -9,4 +9,6 @@
     <string name="hasta">Hasta</string>
     <string name="cuotas">cuotas</string>
     <string name="peso">$</string>
+    <string name="list_empty">List is empty</string>
+    <string name="cantidad">Cantidad:</string>
 </resources>

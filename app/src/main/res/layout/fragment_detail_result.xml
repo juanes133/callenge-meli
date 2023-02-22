@@ -44,23 +44,23 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_marginVertical="20dp"
-            android:src="@mipmap/image_moto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:src="@mipmap/image_moto" />
 
         <TextView
             android:id="@+id/sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
             android:text="@string/peso"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
 
         <TextView
             android:id="@+id/price"
@@ -121,6 +121,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textUpTo" />
 
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:text="@string/cantidad"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stock" />
+
         <TextView
             android:id="@+id/availableQuantity"
             android:layout_width="wrap_content"
@@ -129,9 +142,9 @@
             android:layout_marginVertical="10dp"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/amount"
             app:layout_constraintTop_toBottomOf="@+id/stock"
-            tools:text="Cantidad: 1" />
+            tools:text="1" />
 
         <TextView
             android:id="@+id/information"

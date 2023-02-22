@@ -1,6 +1,8 @@
 package co.com.challengemeli.view
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +20,15 @@ import co.com.challengemeli.viewmodel.SearchViewModelFactory
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.JsonArray
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
+    private var userListToFilter = JsonArray()
     private val searchViewModel: SearchViewModel by activityViewModels {
         SearchViewModelFactory(
             (activity?.application as SearchApplication).searchRepository,
@@ -61,6 +68,40 @@ class SearchFragment : Fragment() {
             searchViewModel.getSearch()
         }
         binding.loading.isVisible = false
+        binding.btnSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int,
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int,
+            ) {
+                if (s.isNotEmpty()) {
+                    val userFilter = userListToFilter.filter { result ->
+                        result.asJsonObject.get("results").asString.startsWith(s.toString().lowercase(Locale.ROOT))
+                    } as JsonArray
+                    if (userFilter.asJsonArray.size() > 0) {
+                            userFilter.asJsonArray
+                    } else {
+                        showUserList(JsonArray())
+                        binding.textListEmpty.isVisible = true
+                    }
+                } else {
+                    showUserList(userListToFilter)
+                }
+            }
+        })
         return binding.root
+    }
+
+    private fun showUserList(userList: JsonArray) {
+        userList.asJsonArray
+        binding.loading.isVisible = false
+        binding.containerSearch.isVisible = true
+        binding.textListEmpty.isVisible = false
     }
 }
