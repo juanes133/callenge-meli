@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import co.com.challengemeli.R
 import co.com.challengemeli.SearchApplication
 import co.com.challengemeli.databinding.FragmentSearchResultsBinding
 import co.com.challengemeli.viewmodel.SearchViewModel
@@ -19,7 +17,6 @@ import com.google.gson.JsonArray
 class SearchResultsFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchResultsBinding
-    private val args: SearchResultsFragmentArgs by navArgs()
     private val searchViewModel: SearchViewModel by activityViewModels {
         SearchViewModelFactory(
             (activity?.application as SearchApplication).searchRepository,
@@ -41,7 +38,11 @@ class SearchResultsFragment : Fragment() {
     private fun initSearchResultsRecyclerView(results: JsonArray) {
         binding.recyclerSearchResults.layoutManager = LinearLayoutManager(context)
         binding.recyclerSearchResults.adapter = SearchResultsAdapter(results) {
-            findNavController().navigate(R.id.detailResultFragment)
+            findNavController().navigate(
+                SearchResultsFragmentDirections.actionSearchResultsFragmentToDetailResultFragment(
+                    it.get("id").asString
+                )
+            )
         }
     }
 }

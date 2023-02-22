@@ -19,13 +19,16 @@
         android:name="co.com.challengemeli.view.SearchResultsFragment"
         android:label="fragment_search_results"
         tools:layout="@layout/fragment_search_results" >
-        <argument android:name="results" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_detailResultFragment"
+            app:destination="@id/detailResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailResultFragment"
         android:name="co.com.challengemeli.view.DetailResultFragment"
         android:label="fragment_detail_result"
         tools:layout="@layout/fragment_detail_result" >
-        <argument android:name="detailResult" />
+        <argument android:name="idResult"
+            app:argType="string" />
     </fragment>
 </navigation>

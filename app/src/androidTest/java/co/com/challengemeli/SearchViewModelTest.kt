@@ -3,6 +3,7 @@ package co.com.challengemeli
 import androidx.lifecycle.Observer
 import androidx.test.annotation.UiThreadTest
 import co.com.challengemeli.repository.SearchRepository
+import co.com.challengemeli.viewmodel.Event
 import co.com.challengemeli.viewmodel.SearchViewModel
 import co.com.challengemeli.viewmodel.SearchViewModelFactory
 import com.google.gson.JsonObject
@@ -21,7 +22,7 @@ class SearchViewModelTest {
         SearchViewModelFactory(SearchRepository()).create(
             SearchViewModel::class.java
         )
-    private var observerSearch: Observer<JsonObject>? = null
+    private var observerSearch: Observer<Event<JsonObject>>? = null
 
     @Before
     fun setUp() {
@@ -42,15 +43,15 @@ class SearchViewModelTest {
         searchViewModel.getSearch()
 
         //Then
-        observerSearch = Observer<JsonObject> { searchResult ->
+        observerSearch = Observer<Event<JsonObject>> { searchResult ->
             Assert.assertNotNull(searchResult)
-            Assert.assertEquals("MCO", searchResult.get("site_id").asString)
-            Assert.assertEquals("GMT-05:00", searchResult.get("country_default_time_zone").asString)
-            Assert.assertEquals("Motorola G6", searchResult.get("query").asString)
-            Assert.assertEquals(true, searchResult.getAsJsonArray("results").size() > 0)
-            Assert.assertEquals(true, searchResult.getAsJsonArray("available_sorts").size() > 0)
-            Assert.assertEquals(true, searchResult.getAsJsonArray("filters").size() > 0)
-            Assert.assertEquals(true, searchResult.getAsJsonArray("available_filters").size() > 0)
+            Assert.assertEquals("MCO", searchResult.peekContent().get("site_id").asString)
+            Assert.assertEquals("GMT-05:00", searchResult.peekContent().get("country_default_time_zone").asString)
+            Assert.assertEquals("Motorola G6", searchResult.peekContent().get("query").asString)
+            Assert.assertEquals(true, searchResult.peekContent().get("results").asJsonArray.size() > 0)
+            Assert.assertEquals(true, searchResult.peekContent().get("available_sorts").asJsonArray.size() > 0)
+            Assert.assertEquals(true, searchResult.peekContent().get("filters").asJsonArray.size() > 0)
+            Assert.assertEquals(true, searchResult.peekContent().get("available_filters").asJsonArray.size() > 0)
             finished = true
         }
         searchViewModel.searchList.observeForever(observerSearch!!)

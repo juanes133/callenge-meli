@@ -76,39 +76,6 @@
             tools:text="579.900" />
 
         <TextView
-            android:id="@+id/textUpTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:text="@string/hasta"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price" />
-
-        <TextView
-            android:id="@+id/quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/textUpTo"
-            app:layout_constraintTop_toBottomOf="@+id/price"
-            tools:text="36" />
-
-        <TextView
-            android:id="@+id/installments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="10dp"
-            android:text="@string/cuotas"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/quantity"
-            app:layout_constraintTop_toBottomOf="@+id/price" />
-
-        <TextView
             android:id="@+id/stock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,7 +86,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textUpTo" />
+            app:layout_constraintTop_toBottomOf="@+id/price" />
 
 
         <TextView
