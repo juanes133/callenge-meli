@@ -11,4 +11,5 @@
     <string name="peso">$</string>
     <string name="list_empty">List is empty</string>
     <string name="cantidad">Cantidad:</string>
+    <string name="parece_que_no_hay_internet">¡Parece que no hay internet!</string>
 </resources>

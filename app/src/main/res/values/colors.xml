@@ -10,4 +10,5 @@
     <color name="background_yellow_meli">#fef059</color>
     <color name="background_btn_blue">#1e6cfe</color>
     <color name="background_search_result">#edecec</color>
+    <color name="background_error_red">#f4555b</color>
 </resources>

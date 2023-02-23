@@ -1,4 +1,4 @@
-package co.com.challengemeli.view
+package co.com.challengemeli.view.result
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.google.gson.JsonObject
 
 class SearchResultsAdapter(
     private val searchResultsList: JsonArray,
-    private val onClickListener: (JsonObject) -> Unit
+    private val onClickListener: (JsonObject) -> Unit,
 ) : RecyclerView.Adapter<SearchResultsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

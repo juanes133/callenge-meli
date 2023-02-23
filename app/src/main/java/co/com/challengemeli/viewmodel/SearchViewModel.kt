@@ -4,7 +4,6 @@ import androidx.lifecycle.*
 import co.com.challengemeli.repository.SearchRepository
 import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
-import kotlin.math.E
 
 class SearchViewModel(
     private val searchRepository: SearchRepository,
@@ -16,19 +15,9 @@ class SearchViewModel(
     private val mutableSearchError = MutableLiveData<Event<Exception>>()
     val searchError: LiveData<Event<Exception>> get() = mutableSearchError
 
-    fun getSearch() {
+    fun getSearch(query: String) {
         viewModelScope.launch {
-            searchRepository.getSearch({ list ->
-                mutableSearchList.value = Event(list)
-            }, {
-                mutableSearchError.value = Event(it)
-            })
-        }
-    }
-
-    suspend fun findById() {
-        viewModelScope.launch {
-            searchRepository.findById({ list ->
+            searchRepository.getSearch( query,{ list ->
                 mutableSearchList.value = Event(list)
             }, {
                 mutableSearchError.value = Event(it)

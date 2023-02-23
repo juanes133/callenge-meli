@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_search_result"
-    tools:context=".view.SearchResultsFragment">
+    tools:context=".view.result.SearchResultsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSearchResults"

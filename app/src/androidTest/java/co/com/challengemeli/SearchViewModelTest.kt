@@ -40,7 +40,7 @@ class SearchViewModelTest {
     @UiThreadTest
     fun getSearchTest() {
         //When
-        searchViewModel.getSearch()
+        searchViewModel.getSearch("Motorola G6")
 
         //Then
         observerSearch = Observer<Event<JsonObject>> { searchResult ->
