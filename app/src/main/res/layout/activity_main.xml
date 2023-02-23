@@ -44,9 +44,11 @@
                     android:id="@+id/internetError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:background="@color/background_error_red"
                     android:text="@string/parece_que_no_hay_internet"
                     android:textColor="@color/white"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
