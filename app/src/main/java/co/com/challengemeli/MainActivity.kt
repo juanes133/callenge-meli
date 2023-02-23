@@ -3,8 +3,8 @@ package co.com.challengemeli
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var navController: NavController? = null
     private var appBarConfiguration: AppBarConfiguration? = null
-    private var checkNetworkConnection: CheckNetworkConnection? = null
+    var checkNetworkConnection: CheckNetworkConnection? = null
     val searchViewModel: SearchViewModel by viewModels {
         SearchViewModelFactory(
             (application as SearchApplication).searchRepository,
@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(binding.root)
         callNetworkConnection()
         val navHostFragment =
@@ -43,8 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         if (checkNetworkConnection?.isConnected(this) == false) {
-            binding.cardInternetError.isVisible = false
-
+            binding.cardInternetError.isVisible = true
         }
     }
 

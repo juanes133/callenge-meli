@@ -27,11 +27,11 @@
             android:id="@+id/cardInternetError"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:cardCornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                     android:id="@+id/internetError"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/background_error_red"
                     android:text="@string/parece_que_no_hay_internet"
                     android:textColor="@color/white"
-                    android:background="@color/background_error_red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

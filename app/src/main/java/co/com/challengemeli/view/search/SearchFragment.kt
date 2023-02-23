@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import co.com.challengemeli.R
-import co.com.challengemeli.SearchApplication
 import co.com.challengemeli.base.SearchBaseFragment
 import co.com.challengemeli.databinding.FragmentSearchBinding
-import co.com.challengemeli.viewmodel.SearchViewModel
-import co.com.challengemeli.viewmodel.SearchViewModelFactory
+import co.com.challengemeli.log.Logger
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
@@ -41,22 +37,39 @@ class SearchFragment : SearchBaseFragment() {
                 } else {
                     findNavController().navigate(R.id.action_searchFragment_to_searchResultsFragment)
                 }
+                binding.loading.isVisible = false
+                binding.btnSearch.isEnabled = true
             }
         }
-        searchViewModel.searchError.observe(viewLifecycleOwner) {
-            Snackbar.make(
-                binding.root,
-                "Al parecer algo salió mal",
-                BaseTransientBottomBar.LENGTH_SHORT
-            ).show()
+        searchActivity.searchViewModel.searchError.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { e ->
+                Snackbar.make(
+                    binding.root,
+                    "Al parecer algo salió mal",
+                    BaseTransientBottomBar.LENGTH_SHORT
+                ).show()
+                Logger().error(e)
+                binding.loading.isVisible = false
+                binding.btnSearch.isEnabled = true
+            }
         }
         binding.btnSearch.setOnClickListener {
-            if (binding.searchProducts.text.toString().length >= 4) {
-                searchViewModel.getSearch(binding.searchProducts.text.toString())
+            if (searchActivity.checkNetworkConnection?.isConnected(searchActivity) == true) {
+                if (binding.searchProducts.text.toString().length >= 4) {
+                    binding.loading.isVisible = true
+                    binding.btnSearch.isEnabled = false
+                    searchActivity.searchViewModel.getSearch(binding.searchProducts.text.toString())
+                } else {
+                    Snackbar.make(
+                        binding.root,
+                        "Señor usuario debe poner al menos cuatro letras para buscar su producto",
+                        BaseTransientBottomBar.LENGTH_SHORT
+                    ).show()
+                }
             } else {
                 Snackbar.make(
                     binding.root,
-                    "Señor usuario debe poner al menos cuatro letras para buscar su producto",
+                    "No estas conectado a internet!",
                     BaseTransientBottomBar.LENGTH_SHORT
                 ).show()
             }

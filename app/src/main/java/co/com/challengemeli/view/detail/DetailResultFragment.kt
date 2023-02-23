@@ -19,11 +19,6 @@ class DetailResultFragment : SearchBaseFragment() {
 
     private lateinit var binding: FragmentDetailResultBinding
     private val args: DetailResultFragmentArgs by navArgs()
-    private val searchViewModel: SearchViewModel by activityViewModels {
-        SearchViewModelFactory(
-            (activity?.application as SearchApplication).searchRepository,
-        )
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +28,7 @@ class DetailResultFragment : SearchBaseFragment() {
         binding = FragmentDetailResultBinding.inflate(inflater, container, false)
         searchActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         searchActivity.supportActionBar?.hide()
-        searchViewModel.searchList.observe(viewLifecycleOwner) { it ->
+        searchActivity.searchViewModel.searchList.observe(viewLifecycleOwner) { it ->
             val result = it.peekContent().get("results").asJsonArray.filter { result ->
                 result.asJsonObject.get("id").asString == args.idResult
             }.firstOrNull()?.asJsonObject
